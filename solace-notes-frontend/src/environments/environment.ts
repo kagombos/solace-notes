@@ -7,5 +7,6 @@ export const environment = {
     authDomain: 'solace-notes.firebaseapp.com',
     messagingSenderId: '368156289234',
     measurementId: 'G-VGWTCCG9YM',
+    databaseURL: 'https://solace-notes-default-rtdb.firebaseio.com/'
   }
 }

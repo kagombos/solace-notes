@@ -1,2 +1,9 @@
-<h1>Solace Notes App testing</h1>
-<app-note-editor></app-note-editor>
+<h1>Solace Notes App</h1>
+<div *ngIf="!dbService.uid">
+  <button mat-button (click)="login()">Log in</button>
+</div>
+<div *ngIf="dbService.uid">
+  <button mat-button (click)="getNotes()">Refresh</button>
+  <app-note-editor></app-note-editor>
+  <app-note *ngFor="let note of dbService.notes" [note]="note"></app-note>
+</div>

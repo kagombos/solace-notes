@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-note',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent {
-  content: string = ''
+  @Input() note?: { key: string, value: string }
 }
