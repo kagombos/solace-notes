@@ -1,11 +1,2 @@
-<h1>Solace Notes App</h1>
-
-<mat-form-field>
-  <textarea matInput placeholder="Write a note!" [formControl]="note"></textarea>
-  <div *ngIf="note.invalid && note.errors">
-    <mat-error *ngIf="note.errors['minlength']">Note must be at least {{ MIN_CHARACTERS }} characters</mat-error>
-    <mat-error *ngIf="note.errors['maxlength']">Note must be at most {{ MAX_CHARACTERS }} characters</mat-error>
-  </div>
-</mat-form-field>
-<div>{{ note.value?.length }} / {{ MAX_CHARACTERS }}></div>
-<button mat-button color="primary" (click)="submit()">Submit note</button> 
+<h1>Solace Notes App testing</h1>
+<app-note-editor></app-note-editor>

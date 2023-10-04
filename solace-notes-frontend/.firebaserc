@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "solace-notes"
+  },
+  "targets": {
+    "solace-notes": {
+      "hosting": {
+        "solace-notes-frontend": [
+          "solace-notes"
+        ]
+      }
+    }
+  }
+}
