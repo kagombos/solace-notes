@@ -2,7 +2,7 @@
   <mat-card-content>
     <mat-form-field>
       <textarea class="editor" matInput placeholder="Write a note!" [formControl]="note" cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
-      <div *ngIf="note.invalid && note.errors">
+      <div *ngIf="note.invalid && note.errors && note.dirty">
         <mat-error *ngIf="note.errors['minlength'] || note.errors['required']">Note must be at least {{ MIN_CHARACTERS }} characters</mat-error>
         <mat-error *ngIf="note.errors['maxlength']">Note must be at most {{ MAX_CHARACTERS }} characters</mat-error>
       </div>

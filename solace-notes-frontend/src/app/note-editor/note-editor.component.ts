@@ -27,7 +27,7 @@ export class NoteEditorComponent implements OnInit {
 
   ngOnInit() {
     this.note = new FormControl('', {
-      validators: [Validators.required(), Validators.minLength(this.MIN_CHARACTERS), Validators.maxLength(this.MAX_CHARACTERS)],
+      validators: [Validators.required, Validators.minLength(this.MIN_CHARACTERS), Validators.maxLength(this.MAX_CHARACTERS)],
     })
     console.log(this.note)
   }
