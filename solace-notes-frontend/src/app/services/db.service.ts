@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Database, DatabaseReference, get, list, listVal, object, onValue, orderByChild, push, query, ref, set } from '@angular/fire/database';
+import { Database, DatabaseReference, get, list, listVal, object, onValue, orderByChild, push, query, ref, set, update } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,21 @@ export class DbService {
   }
 
   getNotes() {
-    let test = query(ref(this.database, this.uid), orderByChild('createdDate'))
     get(ref(this.database, this.uid)).then(snap => {
       this.notes = this.convertMapToArray(snap.val())
-      console.log(this.notes)
     });
+  }
+
+  deleteNote(noteId: string) {
+    set(ref(this.database, this.uid + '/' + noteId), {}).then(() => {
+      this.getNotes()
+    })
+  }
+
+  updateNote(noteObj: any) {
+    set(ref(this.database, this.uid + '/' + noteObj.key), noteObj.value).then(() => {
+      this.getNotes()
+    })
   }
 
   convertMapToArray(map: any) {

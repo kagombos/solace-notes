@@ -10,3 +10,12 @@
 .footer {
   padding: 16px;
 }
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: absolute;
+  bottom: 32px;
+  right: 16px;
+}

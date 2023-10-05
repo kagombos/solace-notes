@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Auth, signInWithRedirect, AuthProvider, GoogleAuthProvider, ProviderId, signInWithPopup } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-import { DbService } from './db.service';
+import { DbService } from './services/db.service';
 import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-root',
@@ -12,10 +12,16 @@ import { FormControl } from '@angular/forms';
 export class AppComponent {
   auth: Auth = inject(Auth)
   search: FormControl<string | null>;
+  filteredNotes: any[] = []
 
   constructor(public dbService: DbService) {
+    this.search = new FormControl('', {
+      updateOn: 'change'
+    })
+  }
 
-    this.search = new FormControl('')
+  filter(value: string) {
+    this.filteredNotes = this.dbService.notes.filter((noteObj: any) => noteObj.value.note.toLowerCase().includes(value.toLowerCase()));
   }
 
   login() {

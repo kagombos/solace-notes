@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { DbService } from '../services/db.service';
+import { EditService } from '../services/edit.service';
 
 @Component({
   selector: 'app-note',
@@ -7,4 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class NoteComponent {
   @Input() noteObj?: { key: string, value: any }
+
+  showActions: boolean = false;
+
+  constructor(public dbService: DbService, public editService: EditService) {}
+
 }

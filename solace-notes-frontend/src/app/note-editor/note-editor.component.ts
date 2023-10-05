@@ -3,7 +3,8 @@ import { Database, get, ref, set } from '@angular/fire/database';
 import { Firestore, addDoc, collection, collectionData, getFirestore } from '@angular/fire/firestore';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DbService } from '../db.service';
+import { DbService } from '../services/db.service';
+import { EditService } from '../services/edit.service';
 
 @Component({
   selector: 'app-note-editor',
@@ -13,13 +14,15 @@ import { DbService } from '../db.service';
 export class NoteEditorComponent implements OnInit {
   MIN_CHARACTERS = 20
   MAX_CHARACTERS = 300
-  notesCollection: any
 
   note: any;
-  store: any;
-  notes: any;
+  editNote: any;
   
-  constructor(private dbService: DbService) {
+  constructor(private dbService: DbService, public editService: EditService) {
+    this.editService.currentNoteObj.subscribe(noteObj => {
+      this.editNote = noteObj
+      this.note.setValue(this.editNote.value.note);
+    })
   }
 
   ngOnInit() {
@@ -30,9 +33,15 @@ export class NoteEditorComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.note)
     if (this.note.valid) {
-      this.dbService.createNote(this.note.value)
+      if (this.editNote) {
+        this.editNote.value.note = this.note.value
+        this.dbService.updateNote(this.editNote)
+        this.editNote = undefined
+      }
+      else {
+        this.dbService.createNote(this.note.value)
+      }
       this.note.reset()
     }
   }

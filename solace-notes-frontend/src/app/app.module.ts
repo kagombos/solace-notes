@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { NoteComponent } from './note/note.component'
@@ -26,6 +27,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth'
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
+    MatIconModule,
     MatInputModule,
     MatCardModule,
     ReactiveFormsModule,
