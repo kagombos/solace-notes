@@ -33,6 +33,7 @@ export class NoteEditorComponent implements OnInit {
     console.log(this.note)
     if (this.note.valid) {
       this.dbService.createNote(this.note.value)
+      this.note.reset()
     }
   }
 }

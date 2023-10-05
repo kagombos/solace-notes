@@ -1,0 +1,13 @@
+.note-editor {
+  width: fit-content;
+}
+
+.footer {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+::ng-deep .editor .mat-mdc-text-field-wrapper {
+  width: 250px !important;
+  min-height: 200px !important;
+}

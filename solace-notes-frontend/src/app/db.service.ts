@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Database, DatabaseReference, get, list, listVal, object, onValue, push, ref, set } from '@angular/fire/database';
+import { Database, DatabaseReference, get, list, listVal, object, onValue, orderByChild, push, query, ref, set } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -15,30 +15,25 @@ export class DbService {
 
   createNote(note: string) {
     set(ref(this.database, this.uid + '/' + self.crypto.randomUUID()),
-      note
+      {
+        'createdDate': new Date().toISOString(),
+        'note': note
+      }
     ).then(() => {
       this.getNotes()
     })
   }
 
   getNotes() {
+    let test = query(ref(this.database, this.uid), orderByChild('createdDate'))
     get(ref(this.database, this.uid)).then(snap => {
       this.notes = this.convertMapToArray(snap.val())
+      console.log(this.notes)
     });
   }
 
-  addListeners(uid: string) {
-    console.log("added listener")
-    this.uid = uid;
-    // onValue(ref(this.database, this.uid + '/'), (snapshot) => {
-    //   console.log(this.uid)
-    //   const notesMap = snapshot.val()
-    //   this.notes = this.convertMapToArray(notesMap)
-    //   console.log(this.notes)
-    // })
-  }
-
   convertMapToArray(map: any) {
-    return Object.keys(map).map(key => { return { "key": key, "value": map[key]} })
+    let array = Object.keys(map).map(key => { return { "key": key, "value": map[key]} })
+    return array.sort((a, b) => new Date(b.value.createdDate).valueOf() - new Date(a.value.createdDate).valueOf())
   }
 }

@@ -1,9 +1,17 @@
-<mat-form-field>
-  <textarea matInput placeholder="Write a note!" [formControl]="note"></textarea>
-  <div *ngIf="note.invalid && note.errors">
-    <mat-error *ngIf="note.errors['minlength']">Note must be at least {{ MIN_CHARACTERS }} characters</mat-error>
-    <mat-error *ngIf="note.errors['maxlength']">Note must be at most {{ MAX_CHARACTERS }} characters</mat-error>
-  </div>
-</mat-form-field>
-<div>{{ note.value?.length }} / {{ MAX_CHARACTERS }}</div>
-<button mat-button color="primary" (click)="submit()">Submit note</button> 
+<mat-card class="note-editor">
+  <mat-card-content>
+    <mat-form-field>
+      <textarea class="editor" matInput placeholder="Write a note!" [formControl]="note" cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
+      <div *ngIf="note.invalid && note.errors">
+        <mat-error *ngIf="note.errors['minlength']">Note must be at least {{ MIN_CHARACTERS }} characters</mat-error>
+        <mat-error *ngIf="note.errors['maxlength']">Note must be at most {{ MAX_CHARACTERS }} characters</mat-error>
+      </div>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-footer class="footer pb-2 d-flex align-items-center justify-content-between">
+    <div>{{ note.value?.length ?? 0 }} / {{ MAX_CHARACTERS }}</div>
+    <button mat-button color="primary" (click)="submit()">Submit note</button> 
+  </mat-card-footer>
+</mat-card>
+
+

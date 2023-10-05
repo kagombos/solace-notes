@@ -1,1 +1,8 @@
-<mat-card>{{ note?.value }}</mat-card>
+<mat-card class="card">
+  <mat-card-content class="content">
+    <div>{{ noteObj?.value.note }}</div>
+  </mat-card-content>
+  <mat-card-footer class="footer">
+    <div>{{ noteObj?.value.createdDate }}</div>
+  </mat-card-footer>
+</mat-card>

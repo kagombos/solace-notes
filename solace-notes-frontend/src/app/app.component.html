@@ -1,9 +1,17 @@
-<h1>Solace Notes App</h1>
-<div *ngIf="!dbService.uid">
-  <button mat-button (click)="login()">Log in</button>
-</div>
-<div *ngIf="dbService.uid">
-  <button mat-button (click)="getNotes()">Refresh</button>
-  <app-note-editor></app-note-editor>
-  <app-note *ngFor="let note of dbService.notes" [note]="note"></app-note>
+<div class="p-4 w-100 app-wrapper">
+  <h1>Solace Notes App</h1>
+  <div *ngIf="!dbService.uid">
+    <button mat-button (click)="login()">Log in</button>
+  </div>
+  <div *ngIf="dbService.uid">
+    <div class="app-header">
+      <app-note-editor class="editor"></app-note-editor>
+      <mat-form-field>
+        <input matInput placeholder="Search...">
+      </mat-form-field>  
+    </div>
+    <div class="d-flex flex-wrap w-100 gap-3 pt-4">
+      <app-note *ngFor="let note of dbService.notes" [noteObj]="note"></app-note>
+    </div>
+  </div>
 </div>

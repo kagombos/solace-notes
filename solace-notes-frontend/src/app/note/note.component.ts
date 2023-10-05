@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent {
-  @Input() note?: { key: string, value: string }
+  @Input() noteObj?: { key: string, value: any }
 }

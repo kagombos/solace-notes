@@ -1,0 +1,15 @@
+.app-wrapper {
+  background-color: #d9edfc;
+  min-height: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  border-bottom: 1px solid black;
+}
+
+.editor {
+  margin-bottom: 24px;
+}
