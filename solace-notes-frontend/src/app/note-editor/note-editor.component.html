@@ -3,7 +3,7 @@
     <mat-form-field>
       <textarea class="editor" matInput placeholder="Write a note!" [formControl]="note" cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
       <div *ngIf="note.invalid && note.errors">
-        <mat-error *ngIf="note.errors['minlength']">Note must be at least {{ MIN_CHARACTERS }} characters</mat-error>
+        <mat-error *ngIf="note.errors['minlength'] || note.errors['required']">Note must be at least {{ MIN_CHARACTERS }} characters</mat-error>
         <mat-error *ngIf="note.errors['maxlength']">Note must be at most {{ MAX_CHARACTERS }} characters</mat-error>
       </div>
     </mat-form-field>
