@@ -43,7 +43,10 @@ export class DbService {
   }
 
   convertMapToArray(map: any) {
-    let array = Object.keys(map).map(key => { return { "key": key, "value": map[key]} })
-    return array.sort((a, b) => new Date(b.value.createdDate).valueOf() - new Date(a.value.createdDate).valueOf())
+    if (map) {
+      let array = Object.keys(map).map(key => { return { "key": key, "value": map[key]} })
+      return array.sort((a, b) => new Date(b.value.createdDate).valueOf() - new Date(a.value.createdDate).valueOf())
+    }
+    return []
   }
 }
